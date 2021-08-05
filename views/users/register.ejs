@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../admin-partials/header.ejs') %>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+      <%if(errors.length>0){%>
+      <div class="alert alert-danger">
+        <%errors.forEach(error=>{%> <%= error%><br />
+        <%})%>
+      </div>
+      <%}%>
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form action="/users/register" method="POST">
+              <h1>ICT <b>Fest,</b> 2021.</h1>
+              <div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  id="name"
+                  name="name"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  id="email"
+                  name="email"
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Retype password"
+                  id="confirm_password"
+                  name="confirm_password"
+                />
+              </div>
+              <div>
+                <button class="btn btn-round btn-success" type="submit">
+                  Register
+                </button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">
+                  Already have an account?
+                  <a href="/users/login" class="to_register"> Log In! </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class=""></i> ICT <b>Fest,</b> 2021.</h1>
+                  <p>
+                    ©2021 All Rights Reserved.<br />Developed by Department of
+                    CSE, IUT.
+                  </p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('admin-partials/header.ejs') %>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <%- include('admin-partials/sidebar.ejs') %>
+
+        <!-- top navigation -->
+        <%- include('admin-partials/navbar.ejs') %>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <%- include('admin-pages/dashboard-content.ejs') %>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <%- include('admin-partials/footer.ejs') %>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <%- include('admin-partials/scripts.ejs') %>
+  </body>
+</html>
