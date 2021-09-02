@@ -1,5 +1,8 @@
 const MathOlympiad = require("../models/MathOlympiad.model");
 
+const userMail = require("../mail");
+const { v4: uuidv4 } = require('uuid');
+
 const getMO = (req, res) => {
   res.render("math-olympiad/register.ejs", { error: req.flash("error") });
 };
@@ -34,6 +37,7 @@ const postMO = (req, res) => {
       req.flash("error", error);
       res.redirect("/MathOlympiad/register");
     } else {
+      const key=uuidv4();
       const participant = new MathOlympiad({
         name,
         category,
@@ -44,11 +48,13 @@ const postMO = (req, res) => {
         total,
         selected,
         tshirt,
+        key,
       });
       participant
         .save()
         .then(() => {
           error = "Participant has been registered successfully!";
+          userMail(email,"Math Olympiad",key,name);
           req.flash("error", error);
           res.redirect("/MathOlympiad/register");
         })

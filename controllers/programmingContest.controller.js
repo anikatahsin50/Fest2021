@@ -1,4 +1,6 @@
 const ProgrammingContest = require("../models/ProgrammingContest.model");
+const userEmail = require("../mail");
+const { v4: uuidv4 } = require('uuid');
 const getPC = (req, res) =>{
 res.render("programming-contest/register.ejs", {error: req.flash("error")});
 };
@@ -36,6 +38,7 @@ const postPC = (req,res) =>{
            req.flash("error", error);
            res.redirect("/ProgrammingContest/register");
        }else{
+        const key=uuidv4();
            const participant=new ProgrammingContest({
                team_name,
                name_one,
@@ -48,11 +51,13 @@ const postPC = (req,res) =>{
                total,
                selected,
                tshirt_one,
-               tshirt_two
+               tshirt_two,
+               key,
            });
 
            participant.save().then(()=>{
             error="Participant has been registered successfully!";
+            userEmail(email,"Programming Contest",key,team_name);
            console.log(error);
            req.flash("error", error);
             res.redirect("/ProgrammingContest/register");
